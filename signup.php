@@ -2,11 +2,13 @@
 
     session_start();
 
+    require_once('validation.php');
+
     header('X-FRAME-OPTIONS:DENY');
 
-    // if(!empty($_SESSION)){
+    // if(!empty($_POST)){
     //     echo '<pre>';
-    //     var_dump ($_SESSION);
+    //     var_dump ($_POST);
     //     echo '<pre>';
     // }
 
@@ -17,10 +19,11 @@
 
     //入力「0」、確認「1」、登録「2」
     $pageFlag = 0;
+    $errors = validation($_POST);
 
     //if文でページを切り替える処理
     //入力画面で値が入力されていたら確認画面に切り替える
-    if(!empty($_POST['btn_confirm'])){
+    if(!empty($_POST['btn_confirm']) && empty($errors)){
         $pageFlag = 1;
     }
     if(!empty($_POST['btn_register'])){
@@ -88,6 +91,18 @@
             }
             $token = $_SESSION['csrfToken'];
         ?>
+
+        <?php if(!empty($errors) && !empty($_POST['btn_confirm'])) : ?>
+            <?php echo '<ul>' ;?>
+                <?php
+                    foreach($errors as $error){
+                        echo '<li>' . $error . '</li>';
+                    }
+                ?>
+            <?php echo '</ul>' ;?>
+        <?php endif ;?>
+
+
             <form action="signup.php" method="POST">
                 名前
                 <input type="text" name="name" id="name" value="<?php if(!empty($_POST['name'])){echo h($_POST['name']);} ?>">
