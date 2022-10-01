@@ -6,11 +6,6 @@
     //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
 
-    // if(!empty($_POST)){
-    //     echo '<pre>';
-    //     var_dump ($_POST);
-    //     echo '<pre>';
-    // }
 
     //クロスサイトスクリプティング攻撃対策用の関数を定義
     function h($str){

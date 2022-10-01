@@ -3,9 +3,7 @@
     //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
 
-    require_once('validation.php');
-
-    // var_dump ($_SESSION);
+    include('validation.php');
 
     //クロスサイトスクリプティング攻撃対策用の関数を定義
     function h($str){
@@ -13,9 +11,16 @@
     }
 
     $pageFlag = 0;
+    $btn_login = 1;
+
+    if(!empty($_POST['btn_login'])){
+        $pageFlag = 3;
+    }
 
 ?>
 
+<?php if($pageFlag === 0 && $btn_login === 1) :?>
+    <?php $btn_login = ""; ?>
 <!DOCTYPE html>
     <html lang="ja">
     <head>
@@ -35,3 +40,4 @@
             <a href="top.php">トップに戻る</a>
     </body>
 </html>
+<?php endif ;?>

@@ -2,7 +2,7 @@
 //クリックジャッキング対策
 header('X-FRAME-OPTIONS:DENY');
 
-    require_once("login.php");
+require_once("login.php");
 
     // echo '<pre>';
     // var_dump ($_POST['token']);
@@ -14,9 +14,10 @@ $accountOrEmail = $_POST["accountOrEmail"];
 $login_password = $_POST["login_password"];
 
 $pageFlag = 0;
+$btn_login = '';
 
 //if文でページを切り替える処理
-//ログイン入力画面で値が入力されていたらログイン画面に切り替える
+//ログイン入力画面でボタンが押されたらFlagに3（ログイン完了画面）を代入
 if(!empty($_POST['btn_login'])){
     $pageFlag = 3;
 }
@@ -44,14 +45,18 @@ if(!empty($_POST['btn_login'])){
 
     if(empty($result)){
         $msg = 'そのユーザーは登録されておりません。再度入力してください';
+        
     }else{
         $msg = 'データを正常に取得できました。';
     }
 
     foreach($result as $row){
         $login_account = $row['account'];
+        $login_name = $row['NAME'];
         $login_email = $row['email'];
         $login_password = $row['password'];
+        $created_date = $row['created_date'];
+        $updated_date = $row['updated_date'];
     }
 
    } catch (PDOException $e) {
@@ -60,19 +65,33 @@ if(!empty($_POST['btn_login'])){
    } 
 //--------------------------------------------------------------------------------------------------------------------------
 ?>
+<?php if($pageFlag === 3 && empty($btn_timeline)) :?>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MySQL接続確認</title>
+    </head>
+    <body>
+        <?php 
+            if(!empty($result)){
+                echo '【MySQL接続確認】';
+            }else{
+                echo $msg;
+            }
+        ?>
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>MySQL接続確認</title>
-  </head>
-  <body>
-    <p>【MySQL接続確認】</p>
-    <p><?php echo $msg; ?></p>
-    <?php 
-    if($pageFlag = 3 && !empty($result)){
-            echo '<h2>'.'ユーザー「'.$login_account.'」でログインしました。'.'</h2>';
-    }
-    ?>
-  </body>
-</html>
+        <?php if($pageFlag = 3 && !empty($result)) :?>
+            
+            <h2>ユーザー「<?PHP echo $login_name ;?>」でログインしました。</h2>
+        
+            <form action="timeline.php" method="POST">     
+                <input type="submit" name="btn_timeline" value="タイムラインへ"/>
+                <input type="hidden" name="login_account" value="<?php echo $login_account; ?>">
+                <input type="hidden" name="login_name" value="<?php echo $login_name; ?>">
+            </form>
+        <?php endif ;?>
+        <br />
+        <a href="login.php">ログイン情報入力画面に戻る</a>
+    </body>
+    </html>
+<?php endif ;?>
