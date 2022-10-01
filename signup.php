@@ -3,7 +3,7 @@
     session_start();
 
     require_once('validation.php');
-
+    //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
 
     // if(!empty($_POST)){

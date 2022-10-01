@@ -1,5 +1,19 @@
 <?php
+    
+    //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
+
+    require_once('validation.php');
+
+    // var_dump ($_SESSION);
+
+    //クロスサイトスクリプティング攻撃対策用の関数を定義
+    function h($str){
+        return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+    }
+
+    $pageFlag = 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -10,17 +24,14 @@
     </head>
 
     <body>
-        <div class="main-content">
-            <form action="login" method="post"><br />
-                <label for="accountOrEmail">アカウント名かメールアドレス</label>
-                <input name="accountOrEmail" id="accountOrEmail"/> <br />
+            <form action="login_database.php" method="POST">
+                アカウント名かメールアドレス
+                <input type="text" name="accountOrEmail" id="accountOrEmail" value="<?php if(!empty($_POST['accountOrEmail'])){echo h($_POST['accountOrEmail']);} ?>"><br/>
+                パスワード
+                <input type="password" name="login_password" id="login_password" value="<?php if(!empty($_POST['login_password'])){echo h($_POST['login_password']);} ?>"><br/>
 
-                <label for="password">パスワード</label>
-                <input name="password" type="password" id="password"/> <br />
-
-                <input type="submit" value="ログイン" class="button1"/> <br />
-                <a href="top.php">戻る</a>
+                <input type="submit" name="btn_login" value="ログイン"/> <br />
             </form>
-        </div>
+            <a href="top.php">トップに戻る</a>
     </body>
 </html>

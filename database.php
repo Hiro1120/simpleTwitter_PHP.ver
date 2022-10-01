@@ -1,15 +1,16 @@
 <?php 
+//クリックジャッキング対策
 header('X-FRAME-OPTIONS:DENY');
 
-// if(!empty($_SESSION)){
+// if(!empty($_POST['accountOrEmail'])){
 //     echo '<pre>';
-//     var_dump ($_SESSION);
+//     var_dump ($_POST['login_password']);
 //     echo '<pre>';
 // }
 
 require_once("signup.php");
 
-//入力フォームで入力された値を受け取る
+//ユーザー登録フォームで入力された値を受け取る
 $signup_name = $_POST['signup'];
 $name = $_POST["name"];
 $account = $_POST["account"];
@@ -17,21 +18,23 @@ $password = $_POST["password"];
 $email = $_POST["email"];
 $description = $_POST["description"];
 
+
 //MySQLへの接続確認
    define('HOSTNAME', 'localhost');
    define('DATABASE', 'simple_twitter');
    define('USERNAME', 'root');
    define('PASSWORD', 'root');
    
+//--------------------------------------------------------------------------------------------------------------------------
    try {
-       //DBにデータを登録する
+       //DBにユーザーデータを登録する
      $db  = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
       $addData = $db -> exec("INSERT INTO `users` (`id`, `account`, `NAME`, `email`, `password`, `description`, `created_date`, `updated_date`)
                                  VALUES(NULL, '$account', '$name', '$email', '$password', '$description', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);");
 
     $msg = "設定された内容が正常にデータベースに登録されました。";
 
-    $htmlSentence = <<<_EOD_
+    $finish_register = <<<_EOD_
         <?php if($pageFlag === 2) : ?>
         <?php if({$_POST['csrf']} === {$_SESSION['csrfToken']}) :?>
                 登録が完了しました。
@@ -46,6 +49,7 @@ $description = $_POST["description"];
      $isConnect = false;
      $msg       = "データは正常に登録できませんでした。<br>(" . $e->getMessage() . ")";
    } 
+//--------------------------------------------------------------------------------------------------------------------------
 ?>
 
 <html>
@@ -54,7 +58,7 @@ $description = $_POST["description"];
     <title>MySQL接続確認</title>
   </head>
   <body>
-    <?php echo $htmlSentence?>
+    <?php echo $finish_register?>
     <h1>MySQL接続確認</h1>
     <p><?php echo $msg; ?></p>
     <br>
