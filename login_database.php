@@ -4,10 +4,6 @@ header('X-FRAME-OPTIONS:DENY');
 
 require_once("login.php");
 
-    // echo '<pre>';
-    // var_dump ($_POST['token']);
-    // //var_dump ($_POST['login_password']);
-    // echo '<pre>';
 
 //ログインフォームで入力された値を受け取る
 $accountOrEmail = $_POST["accountOrEmail"];
@@ -51,6 +47,7 @@ if(!empty($_POST['btn_login'])){
     }
 
     foreach($result as $row){
+        $login_id = $row['id'];
         $login_account = $row['account'];
         $login_name = $row['NAME'];
         $login_email = $row['email'];
@@ -86,8 +83,9 @@ if(!empty($_POST['btn_login'])){
         
             <form action="timeline.php" method="POST">     
                 <input type="submit" name="btn_timeline" value="タイムラインへ"/>
-                <input type="hidden" name="login_account" value="<?php echo $login_account; ?>">
-                <input type="hidden" name="login_name" value="<?php echo $login_name; ?>">
+                <input type="hidden" name="login_id" value="<?php echo h($login_id); ?>">
+                <input type="hidden" name="login_account" value="<?php echo h($login_account); ?>">
+                <input type="hidden" name="login_name" value="<?php echo h($login_name); ?>">
             </form>
         <?php endif ;?>
         <br />

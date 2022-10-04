@@ -1,5 +1,6 @@
 <?php
-
+    
+    //ユーザー登録時のエラーメッセージ
     function validation($request){
 
         $errors = [];
@@ -17,7 +18,7 @@
             $errors[] = '「パスワード」は必須です。';
 
         }else{
-            
+
             if(0 < strlen($request['password']) && 4 > strlen($request['password'])){
                 $errors[] = '「パスワード」は4文字以上で入力してください。';
             }
@@ -29,6 +30,22 @@
 
         if(empty($request['email']) || !filter_var($request['email'], FILTER_VALIDATE_EMAIL)){
             $errors[] = '「メールアドレス」は必須です。正しい形式で入力してください。';
+        }
+
+        return $errors;
+    }
+
+    //つぶやき時のエラーメッセージ
+    function validation_tweet($request){
+
+        $errors = [];
+
+        if(empty($request['message_text'])){
+            $errors[] = 'つぶやき内容を入力してください。';
+        }
+
+        if(140 < strlen($request['message_text'])){
+            $errors[] = '140文字以内で入力してください。';
         }
 
         return $errors;
