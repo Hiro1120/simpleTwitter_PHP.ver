@@ -14,8 +14,6 @@
             <div class="header">
                 <a href="login.php">ログイン</a>
                 <a href="signup.php">登録する</a>
-                <a href="">ホーム</a>
-                <a href="">ログアウト</a>
             </div>
         </div>
 

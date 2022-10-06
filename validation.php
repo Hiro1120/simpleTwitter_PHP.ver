@@ -44,7 +44,7 @@
             $errors[] = 'つぶやき内容を入力してください。';
         }
 
-        if(140 < strlen($request['message_text'])){
+        if(140 < mb_strlen($request['message_text'])){
             $errors[] = '140文字以内で入力してください。';
         }
 
