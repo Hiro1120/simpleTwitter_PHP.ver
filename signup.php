@@ -30,7 +30,13 @@
 <!DOCTYPE html>
     <html lang="ja">
     <head>
-        <meta charset="utf-8">
+        <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
         <title>ユーザー登録</title>
     </head>
 
@@ -40,23 +46,28 @@
     <?php if($pageFlag === 1) : ?>
     <!--トークンが一致しているか判定する-->
     <?php if($_POST['csrf'] === $_SESSION['csrfToken']) :?>
+        <div class="center">
             <form action="database.php" method="POST">
-                名前
-                <?php echo h($_POST['name']); ?>
+                <div class="signup-block">
+                    名前：
+                    <font color="aliceblue"><?php echo h($_POST['name']); ?></font>
+                    <br>
+                    アカウント名：
+                    <font color="aliceblue"><?php echo h($_POST['account']); ?></font>
+                    <br>
+                    パスワード：
+                    <font color="aliceblue"><?php echo h(str_repeat('●', strlen($_POST['password']))); ?></font>
+                    <br>
+                    メールアドレス：
+                    <font color="aliceblue"><?php echo h($_POST['email']); ?></font>
+                    <br>
+                    説明：
+                    <font color="aliceblue"><?php echo h($_POST['description']); ?></font>
+                </div>
                 <br>
-                アカウント名
-                <?php echo h($_POST['account']); ?>
-                <br>
-                パスワード
-                <?php echo h($_POST['password']); ?>
-                <br>
-                メールアドレス
-                <?php echo h($_POST['email']); ?>
-                <br>
-                説明
-                <?php echo h($_POST['description']); ?>
-                <br>
-                <input type="submit" name="btn_register" value="登録する">
+                <div style="margin:10px" class="col-12">
+                    <button type="submit" class="btn btn-primary" name="btn_register" value="登録する">登録する</button>
+                </div>
                 <input type="hidden" name="name" value="<?php echo h($_POST['name']); ?>">
                 <input type="hidden" name="account" value="<?php echo h($_POST['account']); ?>">
                 <input type="hidden" name="password" value="<?php echo h($_POST['password']); ?>">
@@ -64,15 +75,19 @@
                 <input type="hidden" name="description" value="<?php echo h($_POST['description']); ?>">
                 <input type="hidden" name="csrf" value="<?php echo h($_POST['csrf']);?>">
             </form>
+
+
             <form action="signup.php" method="POST">
-                <input type="submit" name="back" value="戻る">
+                <div div style="margin:10px" class="col-12">
+                    <button type="submit" class="btn btn-primary" name="back" value="戻る">戻る</button>
+                </div>
                 <input type="hidden" name="name" value="<?php echo h($_POST['name']); ?>">
                 <input type="hidden" name="account" value="<?php echo h($_POST['account']); ?>">
                 <input type="hidden" name="password" value="<?php echo h($_POST['password']); ?>">
                 <input type="hidden" name="email" value="<?php echo h($_POST['email']); ?>">
                 <input type="hidden" name="description" value="<?php echo h($_POST['description']); ?>">
-            </form>
             <a href="top.php">トップに戻る</a>
+    </div>
         <?php endif; ?>
         <?php endif; ?>
         
@@ -87,6 +102,7 @@
             $token = $_SESSION['csrfToken'];
         ?>
 
+    <div class="validation">    
         <?php if(!empty($errors) && !empty($_POST['btn_confirm'])) : ?>
             <?php echo '<ul>' ;?>
                 <?php
@@ -96,28 +112,63 @@
                 ?>
             <?php echo '</ul>' ;?>
         <?php endif ;?>
-
-
-            <form action="signup.php" method="POST">
-                名前
-                <input type="text" name="name" id="name" value="<?php if(!empty($_POST['name'])){echo h($_POST['name']);} ?>">
-                <br>
-                アカウント名
-                <input type="text" name="account" id="account" value="<?php if(!empty($_POST['account'])){echo h($_POST['account']);} ?>">
-                <br>
-                パスワード
-                <input type="password" name="password" id="password" value="<?php if(!empty($_POST['password'])){echo h($_POST['password']);} ?>">
-                <br>
-                メールアドレス
-                <input type="email" name="email" value="<?php if(!empty($_POST['email'])){echo h($_POST['email']);}?>">
-                <br>
-                説明
-                <textarea name="description" cols="35" rows="5" id="description" value="<?php if(!empty($_POST['description'])){echo h($_POST['description']);}?>"></textarea>
-                <br>
-                <input type="submit" name="btn_confirm" value="確認する">
-                <input type="hidden" name="csrf" value="<?php echo $token; ?>">
+    </div>
+    <div class="row">
+        <div class="m-5">
+            <form class="row g-3" action="signup.php" method="POST">
+                <div class="signup-block">
+                    <div class="col-md-4">
+                        <div class="mb-2">
+                            <label for="signup-name" class="form-label">名前</label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="name" id="signup-name" placeholder="マリオ" value="<?php if(!empty($_POST['name'])){echo h($_POST['name']);} ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-2">
+                            <label for="signup-account" class="form-label">アカウント名</label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="account" id="signup-account" placeholder="mario" value="<?php if(!empty($_POST['account'])){echo h($_POST['account']);} ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-2">
+                            <label for="signup-password" class="form-label">パスワード</label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="password" id="signup-password" placeholder="4文字以上で入力してください" value="<?php if(!empty($_POST['password'])){echo h($_POST['password']);} ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="mb-2">
+                            <label for="signup-email" class="form-label">メールアドレス</label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" name="email" id="signup-name" placeholder="〇〇〇@〇〇〇.com" value="<?php if(!empty($_POST['email'])){echo h($_POST['email']);}?>" required>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="mb-2">
+                            <label for="signup-description" class="form-label">説明</label>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="description" class="form-control" cols="35" placeholder="ユーザー自身の紹介文を記載してください。" id="signup-description" value="<?php if(!empty($_POST['description'])){echo h($_POST['description']);}?>"></textarea>
+                        </div>
+                    </div>
+                </div>
+                    
+                    <input type="hidden" name="csrf" value="<?php echo $token; ?>">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
+                    </div>
             </form>
+        </div>
+    </div>
+        <div class="header">
             <a href="top.php">トップに戻る</a>
+        </div>
         <?php endif; ?>
     </body>
 </html>

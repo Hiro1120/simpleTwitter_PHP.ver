@@ -2,11 +2,6 @@
 //クリックジャッキング対策
 header('X-FRAME-OPTIONS:DENY');
 
-// if(!empty($_POST['accountOrEmail'])){
-//     echo '<pre>';
-//     var_dump ($_POST['login_password']);
-//     echo '<pre>';
-// }
 
 include("signup.php");
 
@@ -52,16 +47,29 @@ $description = $_POST["description"];
 //--------------------------------------------------------------------------------------------------------------------------
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>MySQL接続確認</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+    <title>ユーザー登録完了</title>
   </head>
   <body>
-    <?php echo $finish_register?>
-    <h1>MySQL接続確認</h1>
-    <p><?php echo $msg; ?></p>
+  <div class="center">
+    <div class="message-block">
+      <?php echo $finish_register?>
+      <br>
+      <p><?php echo $msg; ?></p>
     <br>
+  </div>
     <a href="top.php">トップに戻る</a>
+  </div>
+
+
   </body>
 </html>

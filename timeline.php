@@ -63,7 +63,7 @@ if($pageFlag === 1){
        //DBからつぶやきデータを取得する
     $db = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
     $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $selectData = $db -> prepare('SELECT messages.id, messages.user_id, messages.text, messages.created_date, users.account, users.NAME FROM `messages` INNER JOIN `users` ON messages.user_id = users.id');
+    $selectData = $db -> prepare('SELECT messages.id, messages.user_id, messages.text, messages.created_date, users.account, users.NAME FROM `messages` INNER JOIN `users` ON messages.user_id = users.id ORDER BY id DESC');
 
     // executeでクエリを実行
     $selectData->execute();
@@ -80,7 +80,7 @@ if($pageFlag === 1){
         $account = $row['account'];
         $name = $row['NAME'];
 
-        $display_messages[] = '<br>'.'<font color="blue">'.$name.'@'.$account.'</font>'.'<br>'."　　".$message_text.'<br>'.'<font color="blue">'.$created_date.'</font>'.'<br>';
+        $display_messages[] = '<br>'.'<font color="#08ffc8">'.$name.'@'.$account.'</font>'.'<br>'.$message_text.'<br>'.'<font color="#5bd1d7">'.$created_date.'</font>'.'<br>';
     }
 
    } catch (PDOException $e) {
@@ -117,11 +117,17 @@ if($pageFlag === 1){
    }
 ?>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="ja">
     <head>
-        <meta charset="utf-8">
-        <title>簡易Twitter</title>
+        <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <title>簡易Twitter（ログイン済み）</title>
     </head>
 
     <body>
@@ -134,7 +140,9 @@ if($pageFlag === 1){
         </div>
         <br />
         <br />
-        <?php echo h($msg) ;?>
+        <div class="center">
+        <font color="#FCD271"><?php echo h($msg) ;?></font>
+    </div>
     <?php endif ;?>
 
     <!--送信確認画面-->
@@ -145,8 +153,10 @@ if($pageFlag === 1){
         </div>
         <br />
         <br />
+        <div class="center">
         <form action="timeline.php" method="POST">
         <?php if(!empty($errors) && !empty($_POST['btn_confirm'])) : ?>
+            <div class="validation">  
             <?php echo '<ul>' ;?>
                 <?php
                     foreach($errors as $error){
@@ -154,47 +164,64 @@ if($pageFlag === 1){
                     }
                 ?>
                 <?php echo '</ul>' ;?>
+                </div>
             <?php endif ;?>
             <br />
             <br />
             <?php if(empty($errors)) :?>
-            つぶやき内容
-            <br />
+            <font color="#FCD271">つぶやき内容</font>
+            <br>
+            <div class="message-block">
             <?php echo $_POST['message_text']; ?>
             <input type="hidden" name="message_text" value="<?php echo h($_POST['message_text']); ?>">
             <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
-            <br />
-                    <input type="submit" name="btn_tweet" value="つぶやく">
+            <br>
+            </div>
+            <br>
+                    <button type="submit" class="btn btn-primary" name="btn_tweet" value="つぶやく">つぶやく</button>
                 <?php endif ;?>
                 
         </form>
         <br/>
             <a href="timeline.php">つぶやき入力画面に戻る</a>
+            </div>
     <?php endif ;?>
 
     <!--つぶやき画面-->
     <?php  if($pageFlag === 1) :?>
         <div class="header">
             <a href="top.php">トップページ</a>
-            <a href="">ログアウト</a>
+            <a href="login.php">ログアウト</a>
         </div>
         <br />
         <br />
+        <div class="center--login-timeline">
+        <div class="sticky">
             <form action="timeline.php" method="POST">
                 <?php 
                     $key = array_key_last($_SESSION['login_name']);
-                    echo $_SESSION['login_name'][$key];
-                 ?>さん<br />
-                いま、どうしてる？<br />
-                <textarea name="message_text" cols="100" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
+                    echo '<font color="08ffc8">'.$_SESSION['login_name'][$key].'</font>';
+                 ?>
+                 <font color="aliceblue">さん</font>
+                 <br />
+                 <font color="aliceblue">いま、どうしてる？</font>
+                <br />
+                <textarea name="message_text" cols="60" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
                 <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
                 <br />
-                <input type="submit" name="btn_confirm" value="確認する">（140文字まで）
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
+                    <font color="#FCD271">（140文字まで）</font>
+                </div>
+    </div>
                 <br />
+                <div class="message-block">
                 <?php foreach($display_messages as $display_message) :?>
                     <?php echo nl2br($display_message); ?>
                 <?php endforeach ;?>
+                </div>
             </form>
+                </div>
     <?php endif ;?>
     </body>
 </html>
