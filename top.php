@@ -1,13 +1,14 @@
 <?php
-
+    //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
-        
-   define('HOSTNAME', 'localhost');
-   define('DATABASE', 'simple_twitter');
-   define('USERNAME', 'root');
-   define('PASSWORD', 'root');
+
+    //ユーザー情報とつぶやきをタイムラインに表示
+    //--------------------------------------------------------------------------------------------------------------------------
+    define('HOSTNAME', 'localhost');
+    define('DATABASE', 'simple_twitter');
+    define('USERNAME', 'root');
+    define('PASSWORD', 'root');
    
-//--------------------------------------------------------------------------------------------------------------------------
    try {
        //DBからつぶやきデータを取得する
     $db = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
@@ -44,6 +45,7 @@
     <head>
         <!--キャッシュを無効にする-->
     <meta http-equiv="Cache-Control" content="no-store">
+
         <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,11 +73,11 @@
                             </div>
                         <?php endforeach ;?>
                     </div>
-                </div>
+                </div><!--main-->
                 <div class="left-sidebar">
                     <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
                 </div>
-            </div>
+            </div><!--colum1-->
             <div class="colum2">
                 <div class="right-sidebar">
                     <div class="video">
@@ -87,8 +89,8 @@
                     <div class="video3">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/DtE1nxSb4d4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div><!--right-sidebar-->
+            </div><!--colum2-->
+        </div><!--main-content-->
     </body>
 </html>
