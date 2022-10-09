@@ -87,7 +87,7 @@ if(!empty($_POST['btn_login'])){
                 ?>
 
                 <?php if($pageFlag = 3 && !empty($result)) :?>              
-                    <h2><?PHP echo $login_name ;?>」でログインしました。</h2>
+                    <h2><?PHP echo $login_name ;?>でログインしました。</h2>
                     <br />
                     <form action="timeline.php" method="POST">     
                     <button type="submit" class="btn btn-primary" name="btn_timeline" value="タイムラインへ">タイムラインへ</button>

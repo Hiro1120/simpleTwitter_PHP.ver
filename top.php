@@ -42,6 +42,8 @@
 <!DOCTYPE html>
     <html lang="ja">
     <head>
+        <!--キャッシュを無効にする-->
+    <meta http-equiv="Cache-Control" content="no-store">
         <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,25 +54,41 @@
 
         <title>簡易Twitter</title>
     </head>
-
     <body>
-
         <div class="header">
             <div class="col1">
-            <a href="login.php">ログイン</a>
-            <a href="signup.php">登録する</a>
-</div>
-        </div>
-        
-        <div class="center-timeline">
-            <div class="message-block">
-                <?php foreach($display_messages as $display_message) :?>
-                    <div class="border-bottom border-light p-2">
-                        <?php echo nl2br($display_message); ?>
-                    </div>
-                <?php endforeach ;?>
+                <a href="login.php">ログイン</a>
+                <a href="signup.php">登録する</a>
             </div>
         </div>
-
+        <div class="main-content">
+            <div class="colum1">
+                <div class="main">
+                    <div class="message-block">
+                        <?php foreach($display_messages as $display_message) :?>
+                            <div class="border-bottom border-light p-2">
+                                <?php echo nl2br($display_message); ?>
+                            </div>
+                        <?php endforeach ;?>
+                    </div>
+                </div>
+                <div class="left-sidebar">
+                    <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
+                </div>
+            </div>
+            <div class="colum2">
+                <div class="right-sidebar">
+                    <div class="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/KsgcD-tei2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video2">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Jgm4D0n4gxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video3">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/DtE1nxSb4d4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

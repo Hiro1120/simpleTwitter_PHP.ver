@@ -3,6 +3,7 @@
 /*全てのページに適用される*/
 body{
     background-color: #17223b;
+
 }
 
 a {
@@ -45,24 +46,64 @@ a {
     font-size: 20px;
 }
 
-.center-timeline{
-    position: absolute;          /* 位置指定 */
-    top: 70%;                    /* 親要素の半分下にずらす */
-    left: 50%;                   /* 親要素の半分右にずらす */
-    transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
-    padding: 20px;               /* 余白指定 */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 1000px;
 }
 
-.center--login-timeline{
-    position: absolute;          /* 位置指定 */
-    top: 70%;                    /* 親要素の半分下にずらす */
-    left: 50%;                   /* 親要素の半分右にずらす */
-    transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
-    padding: 20px;               /* 余白指定 */
+.main{
+    float: right;
+    width: 50%;
 }
 
-.sticky {
-    position: -webkit-sticky; /* safari対応 */
-    position: sticky;
-    top: 10px;/* 上端から10pxのところで固定 */
+.left-sidebar {
+    box-sizing: border-box;
+    height: 1000px;
+    width: 35%;
+    margin-top: 50px;
+    float: left;
 }
+
+.right-sidebar{
+    box-sizing: border-box;
+    height: 1000px;
+    margin: 100px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.video{
+    margin-bottom: 70px;
+    width: 50%;
+}
+
+.video2{
+    margin-bottom: 70px;
+    width: 50%;
+}
+
+.frame_center {
+    text-align: center;
+    margin-left: 10%;
+}
+
+.frame_center2 {
+    text-align: center;
+    margin-left: 20%;
+}
+
+.colum1{
+    width: 60%;
+    float: left;
+}
+
+.colum2{
+    width: 30%;
+    float: right;
+}
+
+

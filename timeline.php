@@ -195,33 +195,53 @@ if($pageFlag === 1){
         </div>
         <br />
         <br />
-        <div class="center--login-timeline">
-        <div class="sticky">
-            <form action="timeline.php" method="POST">
-                <?php 
-                    $key = array_key_last($_SESSION['login_name']);
-                    echo '<font color="08ffc8">'.$_SESSION['login_name'][$key].'</font>';
-                 ?>
-                 <font color="aliceblue">さん</font>
-                 <br />
-                 <font color="aliceblue">いま、どうしてる？</font>
-                <br />
-                <textarea name="message_text" cols="60" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
-                <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
-                <br />
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
-                    <font color="#FCD271">（140文字まで）</font>
+        <form action="timeline.php" method="POST">
+        <div class="main-content">
+            <div class="colum1">
+                <div class="main">
+                    <?php 
+                        $key = array_key_last($_SESSION['login_name']);
+                        echo '<font color="08ffc8">'.$_SESSION['login_name'][$key].'</font>';
+                    ?>
+                    <font color="aliceblue">さん</font>
+                    <br />
+                    <font color="aliceblue">いま、どうしてる？</font>
+                    <br />
+                    <textarea name="message_text" cols="60" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
+                    <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
+                    <br />
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
+                        <font color="#FCD271">（140文字まで）</font>
+                    </div>
+                    <br />
+                    <div class="message-block">
+                        <?php foreach($display_messages as $display_message) :?>
+                            <div class="border-bottom border-light p-2">
+                                <?php echo nl2br($display_message); ?>
+                            </div>
+                        <?php endforeach ;?>
+                    </div>
+                </div><!--main-->
+                    <div class="right-sidebar">
+                        <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
+                    </div>
+            </div>
+            <div class="colum2">
+                <div class="right-sidebar">
+                    <div class="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/NFRefkP4BW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video2">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4a4F5B-CKbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video3">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nw_r3Kpol2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
-    </div>
-                <br />
-                <div class="message-block">
-                <?php foreach($display_messages as $display_message) :?>
-                    <?php echo nl2br($display_message); ?>
-                <?php endforeach ;?>
-                </div>
-            </form>
-                </div>
+            </div>
+        </div><!--main-content-->
+        </form>
     <?php endif ;?>
     </body>
 </html>
