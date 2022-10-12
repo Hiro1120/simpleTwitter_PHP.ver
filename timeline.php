@@ -36,10 +36,6 @@ require_once('validation.php');
         $_SESSION['login_name'][] = $_POST["login_name"];
     }
 
-    //null値・空文字・0の削除、重複値の整理、キーを振り直す
-    // $array_message_user_id = array_values(array_unique(array_filter( $_SESSION['message_user_id'])));
-    // $array_message_text = array_values(array_unique(array_filter( $_SESSION['message_text'])));
-
 
     if(isset($_POST["login_id"]) && !empty($_POST["login_id"])){
         $register_login_id = $_POST["login_id"];
@@ -206,7 +202,7 @@ if($pageFlag === 1){
                             <br />
                             <font color="aliceblue">いま、どうしてる？</font>
                             <br />
-                            <textarea name="message_text" cols="60" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
+                            <textarea name="message_text" cols="45" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
                             <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
                             <br />
                             <div class="col-12">
@@ -234,13 +230,13 @@ if($pageFlag === 1){
                         <div class="right-sidebar">
                             <!--YouTube埋め込み動画-->
                             <div class="video">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/NFRefkP4BW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="500" height="315" src="https://www.youtube.com/embed/NFRefkP4BW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             <div class="video2">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4a4F5B-CKbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="500" height="315" src="https://www.youtube.com/embed/4a4F5B-CKbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             <div class="video3">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/nw_r3Kpol2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="500" height="315" src="https://www.youtube.com/embed/nw_r3Kpol2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div><!--colum2-->

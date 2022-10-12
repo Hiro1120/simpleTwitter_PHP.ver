@@ -2,8 +2,7 @@
 
 /*全てのページに適用される*/
 body{
-    background-color: #17223b;
-
+   background-color: #17223b;
 }
 
 a {
@@ -34,8 +33,11 @@ a {
 .header{
     padding: 30px;               /* 余白指定 */
     font-size: 20px;
+    display:flex;
 }
-
+.icon{
+    float:right;
+}
 
 .center{
     position: absolute;          /* 位置指定 */
@@ -105,5 +107,3 @@ a {
     width: 30%;
     float: right;
 }
-
-

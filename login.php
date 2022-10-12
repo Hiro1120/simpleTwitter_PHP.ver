@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="accountOrEmail" id="login-accountOrEmail" placeholder="必須" value="<?php if(!empty($_POST['accountOrEmail'])){echo h($_POST['accountOrEmail']);} ?>" required><br/>
+                                    <input type="text" class="form-control" name="accountOrEmail" id="login-accountOrEmail" placeholder="必須" value="<?php if(!empty($_POST['accountOrEmail'])){echo h($_POST['accountOrEmail']);} ?>"><br/>
                                 </div>
                             </div>
 
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" name="login_password" id="login-password" placeholder="必須" value="<?php if(!empty($_POST['login_password'])){echo h($_POST['login_password']);} ?>" required><br/>
+                                    <input type="password" class="form-control" name="login_password" id="login-password" placeholder="必須" value="<?php if(!empty($_POST['login_password'])){echo h($_POST['login_password']);} ?>"><br/>
                                 </div>
                             </div>
 

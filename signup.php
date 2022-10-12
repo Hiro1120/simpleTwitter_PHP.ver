@@ -128,7 +128,7 @@
                                     <label for="signup-name" class="form-label">名前</label>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="name" id="signup-name" placeholder="マリオ" value="<?php if(!empty($_POST['name'])){echo h($_POST['name']);} ?>" required>
+                                    <input type="text" class="form-control" name="name" id="signup-name" placeholder="マリオ" value="<?php if(!empty($_POST['name'])){echo h($_POST['name']);} ?>">
                                 </div>
                             </div>
 
@@ -137,7 +137,7 @@
                                     <label for="signup-account" class="form-label">アカウント名</label>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="account" id="signup-account" placeholder="mario" value="<?php if(!empty($_POST['account'])){echo h($_POST['account']);} ?>" required>
+                                    <input type="text" class="form-control" name="account" id="signup-account" placeholder="mario" value="<?php if(!empty($_POST['account'])){echo h($_POST['account']);} ?>">
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@
                                     <label for="signup-password" class="form-label">パスワード</label>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" name="password" id="signup-password" placeholder="4文字以上で入力してください" value="<?php if(!empty($_POST['password'])){echo h($_POST['password']);} ?>" required>
+                                    <input type="password" class="form-control" name="password" id="signup-password" placeholder="4文字以上で入力してください" value="<?php if(!empty($_POST['password'])){echo h($_POST['password']);} ?>">
                                 </div>
                             </div>
 
@@ -155,7 +155,7 @@
                                     <label for="signup-email" class="form-label">メールアドレス</label>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" name="email" id="signup-name" placeholder="〇〇〇@〇〇〇.com" value="<?php if(!empty($_POST['email'])){echo h($_POST['email']);}?>" required>
+                                    <input type="email" class="form-control" name="email" id="signup-name" placeholder="〇〇〇@〇〇〇.com" value="<?php if(!empty($_POST['email'])){echo h($_POST['email']);}?>">
                                 </div>
                             </div>
 
