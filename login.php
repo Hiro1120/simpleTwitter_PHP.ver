@@ -1,5 +1,7 @@
 <?php
     
+    session_start();
+
     //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
 
@@ -22,6 +24,15 @@
 <?php if($pageFlag === 0 && $btn_login === 1) :?>
 
     <?php $btn_login = ""; ?>
+
+    <!--csrfTokenがなければ変数に代入する-->
+    <?php
+        if(!isset($_SESSION['login_csrfToken'])){
+            $login_csrfToken = bin2hex(random_bytes(32));
+            $_SESSION['login_csrfToken'] = $login_csrfToken;
+        }
+        $token = $_SESSION['login_csrfToken'];
+    ?>
 
     <!DOCTYPE html>
         <html lang="ja">
@@ -63,9 +74,13 @@
                             </div>
 
                         </div><!--login-block-->
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary" name="btn_login" value="ログイン">ログイン</button>
-                            </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" name="btn_login" value="ログイン">ログイン</button>
+                        </div>
+
+                        <input type="hidden" name="login_csrf" value="<?php echo $token; ?>">
+
                     </form>
                 </div><!--m-5-->
             </div> <!--row--> 

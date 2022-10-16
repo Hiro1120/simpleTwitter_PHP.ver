@@ -184,64 +184,66 @@ if($pageFlag === 1){
 
         <!--つぶやき画面-->
         <?php  if($pageFlag === 1) :?>
-            <div class="header">
-                <a href="top.php">トップページ</a>
-                <a href="login.php">ログアウト</a>
-            </div>
-            <br />
-            <br />
-            <form action="timeline.php" method="POST">
-                <div class="main-content">
-                    <div class="colum1">
-                        <div class="main">
-                            <?php 
-                                $key = array_key_last($_SESSION['login_name']);
-                                echo '<font color="08ffc8">'.$_SESSION['login_name'][$key].'</font>';
-                            ?>
-                            <font color="aliceblue">さん</font>
-                            <br />
-                            <font color="aliceblue">いま、どうしてる？</font>
-                            <br />
-                            <textarea name="message_text" cols="45" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
-                            <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
-                            <br />
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
-                                <font color="#FCD271">（140文字まで）</font>
-                            </div>
-                            <br />
-                            <!--タイムラインの表示-->
-                            <div class="message-block">
-                                <?php foreach($display_messages as $display_message) :?>
-                                    <div class="border-bottom border-light p-2">
-                                        <?php echo nl2br($display_message); ?>
-                                    </div>
-                                <?php endforeach ;?>
-                            </div>
-                        </div><!--main-->
-                            <!--左側サイドバー-->
-                            <div class="left-sidebar">
-                                <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
-                            </div>
-                    </div><!--colum1-->
+            <?php if($_POST['login_csrf'] === $_SESSION['login_csrfToken']) :?>
+                <div class="header">
+                    <a href="top.php">トップページ</a>
+                    <a href="login.php">ログアウト</a>
+                </div>
+                <br />
+                <br />
+                <form action="timeline.php" method="POST">
+                    <div class="main-content">
+                        <div class="colum1">
+                            <div class="main">
+                                <?php 
+                                    $key = array_key_last($_SESSION['login_name']);
+                                    echo '<font color="08ffc8">'.$_SESSION['login_name'][$key].'</font>';
+                                ?>
+                                <font color="aliceblue">さん</font>
+                                <br />
+                                <font color="aliceblue">いま、どうしてる？</font>
+                                <br />
+                                <textarea name="message_text" cols="45" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
+                                <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
+                                <br />
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary" name="btn_confirm" value="確認する">確認する</button>
+                                    <font color="#FCD271">（140文字まで）</font>
+                                </div>
+                                <br />
+                                <!--タイムラインの表示-->
+                                <div class="message-block">
+                                    <?php foreach($display_messages as $display_message) :?>
+                                        <div class="border-bottom border-light p-2">
+                                            <?php echo nl2br($display_message); ?>
+                                        </div>
+                                    <?php endforeach ;?>
+                                </div>
+                            </div><!--main-->
+                                <!--左側サイドバー-->
+                                <div class="left-sidebar">
+                                    <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
+                                </div>
+                        </div><!--colum1-->
 
-                    <div class="colum2">
-                        <!--右側サイドバー-->
-                        <div class="right-sidebar">
-                            <!--YouTube埋め込み動画-->
-                            <div class="video">
-                                <iframe width="500" height="315" src="https://www.youtube.com/embed/NFRefkP4BW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="colum2">
+                            <!--右側サイドバー-->
+                            <div class="right-sidebar">
+                                <!--YouTube埋め込み動画-->
+                                <div class="video">
+                                    <iframe width="500" height="315" src="https://www.youtube.com/embed/NFRefkP4BW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <div class="video2">
+                                    <iframe width="500" height="315" src="https://www.youtube.com/embed/4a4F5B-CKbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <div class="video3">
+                                    <iframe width="500" height="315" src="https://www.youtube.com/embed/nw_r3Kpol2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
                             </div>
-                            <div class="video2">
-                                <iframe width="500" height="315" src="https://www.youtube.com/embed/4a4F5B-CKbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="video3">
-                                <iframe width="500" height="315" src="https://www.youtube.com/embed/nw_r3Kpol2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div><!--colum2-->
-                </div><!--main-content-->
-            </form>
+                        </div><!--colum2-->
+                    </div><!--main-content-->
+                </form>
+            <?php endif ;?>    
         <?php endif ;?>
     </body>
 </html>

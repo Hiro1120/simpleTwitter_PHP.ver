@@ -80,17 +80,17 @@
             </div><!--colum1-->
 
             <div class="colum2">
-                <input type="image" onclick="location.href='index.php'" name="btn_image" src="./image/icon.PNG" value="スタート画面に戻る">
+                <input type="image" onclick="location.href='maintenance/index.php'" name="btn_image" src="./image/icon.PNG" value="スタート画面に戻る">
                 
                 <div class="right-sidebar">
                     <div class="video">
-                    <iframe width="500" height="315" src="https://www.youtube.com/embed/KsgcD-tei2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/hBl5r_uxbSY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video2">
-                    <iframe width="500" height="315" src="https://www.youtube.com/embed/Jgm4D0n4gxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="500" height="315" src="https://www.youtube.com/embed/Jgm4D0n4gxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video3">
-                    <iframe width="500" height="315" src="https://www.youtube.com/embed/DtE1nxSb4d4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="500" height="315" src="https://www.youtube.com/embed/DtE1nxSb4d4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div><!--right-sidebar-->
             </div><!--colum2-->

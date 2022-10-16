@@ -1,3 +1,8 @@
+<?php
+//パスワード（暗号化）
+(password_hash('simpleTwitter', PASSWORD_BCRYPT));
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
     <head>
@@ -10,21 +15,21 @@
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="css/top.css">
+<link rel="stylesheet" href="../css/top.css">
 
         <title>ようこそ</title>
     </head>
     <body>
         <div class="btn_block">
             <div class="btn-border-gradient-wrap btn-border-gradient-wrap--gold">
-                <a href="top.php" class="btn btn-border-gradient"><span class="btn-text-gradient--gold">つぶやきの世界へ</span></a>
+                <a href="../top.php" class="btn btn-border-gradient"><span class="btn-text-gradient--gold">つぶやきの世界へ</span></a>
             </div>
         </div>
         <table>
             <tr>
                 <td>
                     <div class="image_block">
-                        <img src="image/icon2.png">
+                        <img src="../image/icon2.png">
                     </div>
                 </td>
                 <td>

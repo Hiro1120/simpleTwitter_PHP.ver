@@ -2,7 +2,7 @@
 //クリックジャッキング対策
 header('X-FRAME-OPTIONS:DENY');
 
-require_once("signup.php");
+include("signup.php");
 
 //ユーザー登録フォームで入力された値を受け取る
 $signup_name = $_POST['signup'];

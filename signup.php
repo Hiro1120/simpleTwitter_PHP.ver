@@ -2,7 +2,7 @@
 
     session_start();
 
-    require_once('validation.php');
+    include('validation.php');
 
     //クリックジャッキング対策
     header('X-FRAME-OPTIONS:DENY');
@@ -91,7 +91,7 @@
                     </form>
                         <a href="top.php">トップに戻る</a>
                 </div><!--center-->
-            <?php endif; ?>
+            <?php endif; ?><!--csrfToken-->
         <?php endif; ?>
             
         <!--入力画面-->
