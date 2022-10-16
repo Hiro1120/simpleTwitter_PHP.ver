@@ -34,6 +34,9 @@ if(!empty($_POST['btn_login'])){
         $db = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        //トランザクション処理
+        $db->beginTransaction();
+
         $selectData = $db -> prepare('SELECT * FROM `users` WHERE (`account` = ? OR `email` = ?) AND `password` = ?');
 
         $selectData -> bindValue(1, $accountOrEmail);
@@ -60,7 +63,14 @@ if(!empty($_POST['btn_login'])){
             $created_date = $row['created_date'];
             $updated_date = $row['updated_date'];
         }
+
+        //問題がなければ実行
+        $db->commit();
+
    } catch (PDOException $e) {
+    //途中で問題が起きたら処理を取り消し
+    $pdo->rollBack();
+
      $isConnect = false;
      $msg       = "データを正常に取得できませんでした。<br>(" . $e->getMessage() . ")";
    } 

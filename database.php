@@ -24,6 +24,10 @@ $description = $_POST["description"];
     //DBにユーザーデータを登録する
    try {
       $db  = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
+
+      //トランザクション処理
+      $db->beginTransaction();
+
       $addData = $db -> exec("INSERT INTO `users` (`id`, `account`, `NAME`, `email`, `password`, `description`, `created_date`, `updated_date`)
                               VALUES(NULL, '$account', '$name', '$email', '$password', '$description', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);");
 
@@ -40,9 +44,15 @@ $description = $_POST["description"];
 
           _EOD_;
 
+      //問題がなければ実行
+      $db->commit();
+
    } catch (PDOException $e) {
-     $isConnect = false;
-     $msg       = "データは正常に登録できませんでした。<br>(" . $e->getMessage() . ")";
+    //途中で問題が起きたら処理を取り消し
+    $pdo->rollBack();
+
+    $isConnect = false;
+    $msg       = "データは正常に登録できませんでした。<br>(" . $e->getMessage() . ")";
    } 
 //--------------------------------------------------------------------------------------------------------------------------
 ?>

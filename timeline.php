@@ -62,6 +62,9 @@ if($pageFlag === 1){
         PDO::ATTR_EMULATE_PREPARES => false, //SQLインジェクション対策
     ]);
 
+     //トランザクション処理
+     $db->beginTransaction();
+
     $selectData = $db -> prepare('SELECT messages.id, messages.user_id, messages.text, messages.created_date, users.account, users.NAME FROM `messages` INNER JOIN `users` ON messages.user_id = users.id ORDER BY id DESC');
 
     // executeでクエリを実行
@@ -83,7 +86,13 @@ if($pageFlag === 1){
         $display_messages[] = '<br>'.'<font color="#08ffc8">'.$name.'@'.$account.'</font>'.'<br>'.$message_text.'<br>'.'<font color="#5bd1d7">'.$created_date.'</font>'.'<br>';
     }
 
+    //問題がなければ実行
+    $db->commit();
+
    } catch (PDOException $e) {
+       //途中で問題が起きたら処理を取り消し
+       $pdo->rollBack();
+
      $isConnect = false;
      $msg       = "データを正常に取得できませんでした。<br>(" . $e->getMessage() . ")";
    } 
@@ -103,12 +112,22 @@ if($pageFlag === 1){
         //DBにつぶやき情報を登録する
         try {
             $db  = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
+
+            //トランザクション処理
+            $db->beginTransaction();
+
             $addData = $db -> exec("INSERT INTO `messages` (`id`, `user_id`, `text`, `created_date`, `updated_date`)
                                     VALUES(NULL, '$register_login_id', '$register_message_text', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);");
         
             $msg = "つぶやきを送信しました。";
 
+            //問題がなければ実行
+            $db->commit();
+
         } catch (PDOException $e) {
+            //途中で問題が起きたら処理を取り消し
+            $pdo->rollBack();
+
             $isConnect = false;
             $msg       = "つぶやくことができませんでした。<br>(" . $e->getMessage() . ")";
         } 
