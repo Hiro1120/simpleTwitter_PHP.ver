@@ -126,6 +126,7 @@ if(!empty($_POST['btn_login'])){
                         <a href="login.php">ログイン情報入力画面に戻る</a>
                 </div><!--center-->
             </body>
-        </html>
+        </html>    
+
     <?php endif ;?>
 <?php endif ;?>

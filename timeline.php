@@ -265,6 +265,10 @@ if($pageFlag === 1){
                         </div><!--colum2-->
                     </div><!--main-content-->
                 </form>
+
+                <!--完了画面が表示されるとトークンを削除する-->
+                <?php unset($_SESSION['login_csrfToken']); ?>
+
             <?php endif ;?>    
         <?php endif ;?>
     </body>
