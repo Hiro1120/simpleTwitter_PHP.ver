@@ -2,3 +2,4 @@
 maintenance/.htaccess
 maintenance/.htpasswd
 maintenance/path.txt
+.DS_Store
