@@ -15,6 +15,7 @@ $description = $_POST["description"];
 
 //ユーザー情報の登録
 //--------------------------------------------------------------------------------------------------------------------------
+//定数を定義
    define('HOSTNAME', 'localhost');
    define('DATABASE', 'simple_twitter');
    define('USERNAME', 'root');

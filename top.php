@@ -11,8 +11,10 @@
    
    try {
        //DBからつぶやきデータを取得する
-    $db = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD);
-    $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db = new PDO('mysql:host=' . HOSTNAME . ';dbname=' . DATABASE, USERNAME, PASSWORD,  [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //例外
+        PDO::ATTR_EMULATE_PREPARES => false, //SQLインジェクション対策
+    ]);
     $selectData = $db -> prepare('SELECT messages.id, messages.user_id, messages.text, messages.created_date, users.account, users.NAME FROM `messages` INNER JOIN `users` ON messages.user_id = users.id ORDER BY id DESC');
 
     // executeでクエリを実行

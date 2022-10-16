@@ -1,6 +1,8 @@
 <?php
+$pathFile = file(__DIR__ . '/path.txt');
+$path = explode('：',$pathFile[0]);
 //パスワード（暗号化）
-(password_hash('simpleTwitter', PASSWORD_BCRYPT));
+(password_hash($path[1], PASSWORD_BCRYPT));
 ?>
 
 <!DOCTYPE html>

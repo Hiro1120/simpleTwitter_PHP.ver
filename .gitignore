@@ -1,0 +1,4 @@
+.vscode/
+maintenance/.htaccess
+maintenance/.htpasswd
+maintenance/path.txt
