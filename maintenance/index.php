@@ -1,4 +1,5 @@
 <?php
+echo (password_hash("12345", PASSWORD_BCRYPT));
 $pathFile = file(__DIR__ . '/path.txt');
 $path = explode('：',$pathFile[0]);
 //パスワード（暗号化）
@@ -11,13 +12,13 @@ $path = explode('：',$pathFile[0]);
         <!--キャッシュを無効にする-->
         <meta http-equiv="Cache-Control" content="no-store">
 
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/top.css">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/top.css">
 
         <title>ようこそ</title>
     </head>

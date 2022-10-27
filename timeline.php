@@ -225,7 +225,7 @@ if($pageFlag === 1){
                                 <br />
                                 <font color="aliceblue">いま、どうしてる？</font>
                                 <br />
-                                <textarea name="message_text" cols="45" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
+                                <textarea name="message_text" cols="50" rows="5" value="<?php echo h($_POST['message_text']); ?>"></textarea>
                                 <input type="hidden" name="login_id" value="<?php echo h($_POST['login_id']); ?>">
                                 <br />
                                 <div class="col-12">
@@ -242,10 +242,10 @@ if($pageFlag === 1){
                                     <?php endforeach ;?>
                                 </div>
                             </div><!--main-->
-                                <!--左側サイドバー-->
-                                <div class="left-sidebar">
-                                    <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
-                                </div>
+                            <!--左側サイドバー-->
+                            <div class="left-sidebar">
+                                <iframe  class= "frame_center" src="https://www.famitsu.com" width="100%" height="1500"></iframe>
+                            </div>
                         </div><!--colum1-->
 
                         <div class="colum2">
